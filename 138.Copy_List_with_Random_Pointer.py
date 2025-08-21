@@ -2,7 +2,6 @@
 # O(n) O(n) \ space complexity could imporve to O(1) 
 
 from typing import Optional
-from collections import defaultdict
 
 # Definition for a Node.
 class Node:

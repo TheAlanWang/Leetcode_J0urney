@@ -6,45 +6,32 @@ class Solution:
         if len(s1) > len(s2):
             return False
         
-        need_dic = defaultdict(int)
-        win_dic = defaultdict(int)
-        matches = 0
-        for c in s1:
-            need_dic[c] += 1
+        need_dic = {}
+        win_dic = {}
         
-        for idx in range(len(s1)):
-            char = s2[idx]
-            if char in need_dic:                 
-                win_dic[char] += 1
+        for char in s1:
+            need_dic[char] = need_dic.get(char, 0) + 1
 
-        for ch, cnt in need_dic.items():
-            if win_dic[ch] == cnt: 
-                matches += 1           
-        
-        if matches == len(need_dic):
-            return True
+        need_count = len(need_dic)
+        win_count = 0
+        left = right = 0
 
-        for idx in range(len(s1), len(s2)):
-            add_char = s2[idx]
-            remove_char = s2[idx - len(s1)]
+        while right < len(s2):
+            if s2[right] in need_dic:
+                win_dic[s2[right]] = win_dic.get(s2[right], 0) + 1
+                if win_dic[s2[right]] == need_dic[s2[right]]:
+                    win_count += 1
 
-            if add_char in need_dic:
-                before_add = win_dic[add_char]
-                win_dic[add_char] += 1
-                if win_dic[add_char] == need_dic[add_char]:
-                    matches += 1
-                elif before_add == need_dic[add_char]:
-                    matches -= 1
-            
-            if remove_char in need_dic:
-                before_remove = win_dic[remove_char]
-                win_dic[remove_char] -= 1
-                if  win_dic[remove_char] == need_dic[remove_char]:
-                    matches += 1
-                elif before_remove == need_dic[remove_char]:
-                    matches -= 1
-            
-            if matches == len(need_dic):
+            while right - left + 1 > len(s1):
+                if s2[left] in need_dic:
+                    if win_dic[s2[left]] == need_dic[s2[left]]:
+                        win_count -= 1
+                    win_dic[s2[left]] = win_dic.get(s2[left], 0) - 1
+                left += 1
+
+            if win_count == need_count:
                 return True
+
+            right += 1
         
         return False

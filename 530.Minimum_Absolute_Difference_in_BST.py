@@ -20,7 +20,7 @@ class Solution:
                 return
             inorder(node.left)
             if prev is not None:
-                ans = min(ans, node.val - prev)  # 中序保证非负
+                ans = min(ans, node.val - prev) 
             prev = node.val
             inorder(node.right)
 
