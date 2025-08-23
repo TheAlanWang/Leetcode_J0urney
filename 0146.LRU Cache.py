@@ -21,23 +21,23 @@ class LRUCache:
         self.head.next = self.tail
         self.tail.prev = self.head
 
-    def _remove(self, node): # remove from cache
-        prev = node.prev
+    def _remove(self, node):        # remove from cache
+        prev = node.prev            
         nxt = node.next
         prev.next = nxt
         nxt.prev = prev
 
-    def _add(self, node):   # add to head.next
-        node.next = self.head.next
-        node.prev = self.head
+    def _add(self, node):           # add to head.next
+        node.next = self.head.next  # connect new node
+        node.prev = self.head       # connect new node
 
-        self.head.next.prev = node
-        self.head.next = node
+        self.head.next.prev = node  # link old first node
+        self.head.next = node       # link head forward to the new node
 
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
-        node = self.cache[key] # return DLL node
+        node = self.cache[key]      # return DLL node
         self._remove(node)
         self._add(node)
         return node.val
@@ -47,9 +47,9 @@ class LRUCache:
             self._remove(self.cache[key])
         node = Node(key, value)
         self._add(node)
-        self.cache[key] = node
+        self.cache[key] = node      # add to cache
 
         if len(self.cache) > self.cap:
             node = self.tail.prev
             self._remove(node)
-            del self.cache[node.key]
+            del self.cache[node.key] # remove from cache
