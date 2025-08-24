@@ -1,6 +1,10 @@
 # https://leetcode.com/problems/lru-cache/description/
 # Time Complexity: O(1) Space Complexity: O(n)
 
+'''
+* must use self every time you read or write an instance attribute
+# delete cache use key
+'''
 class Node:
     def __init__(self, key, val):
         # double linked list

@@ -19,7 +19,7 @@ class Solution:
             
             if maxheap:
                 cnt = heapq.heappop(maxheap) + 1
-                if cnt != 0:
+                if cnt != 0:       # add back to queue if there are still remaining tasks
                     queue.append((cnt, time + n))
 
             if queue and queue[0][1] == time:

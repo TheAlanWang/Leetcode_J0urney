@@ -13,7 +13,7 @@ class Solution:
             res.append(intervals[i])
             i += 1
 
-        while i < n and intervals[i][0] <= end:
+        while i < n and intervals[i][0] <= end:  # next.start ≤ cur_end
             start = min(start, intervals[i][0])
             end = max(end, intervals[i][1])
             i += 1
