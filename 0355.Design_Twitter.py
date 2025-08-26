@@ -11,37 +11,41 @@ import heapq
 class Twitter:
 
     def __init__(self):
-        self.time = 0
-        self.tweetMap = defaultdict(list)   # { userID: [(time, tweetId1), (time, tweetId2)] }
-        self.followMap = defaultdict(set)   # { follower: {followee1, followee2} }
+        self.follow_dic = defaultdict(set) # {follwer: {followee} }
+        self.twitte_dic = defaultdict(list) # {userID: [(time1, twitteid1), (time2, twitteid2)]}
 
+        self.tw_time = 0
+        
     def postTweet(self, userId: int, tweetId: int) -> None:
-        self.time += 1
-        self.tweetMap[userId].append((self.time, tweetId))
+        self.tw_time += 1
+        self.twitte_dic[userId].append((self.tw_time, tweetId))
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        minheap = []
+        heap = []
+
+        self.follow_dic[userId].add(userId)
+        for followeeId in self.follow_dic[userId]:
+            if followeeId in self.twitte_dic:
+                idx = len(self.twitte_dic[followeeId]) - 1
+                tw_time = self.twitte_dic[followeeId][idx][0]
+                twitterid = self.twitte_dic[followeeId][idx][1]
+                heapq.heappush(heap, (-tw_time, followeeId, twitterid, idx - 1))
+        
         res = []
+        while len(res) < 10 and heap:
+            tw_time, followeeId, twitterid, idx = heapq.heappop(heap)
         
-        self.followMap[userId].add(userId)
-        for followee in self.followMap[userId]: # put followee's laster twitter
-            if followee in self.tweetMap:
-                idx = len(self.tweetMap[followee]) - 1
-                time, tweetId = self.tweetMap[followee][idx]
-                heapq.heappush(minheap, (-time, tweetId, followee, idx - 1))
-        
-        while minheap and len(res) < 10:
-            time, tweetId, followee, idx = heapq.heappop(minheap)
-            res.append(tweetId)
+            res.append(twitterid)
             if idx >= 0:
-                time, tweetId = self.tweetMap[followee][idx] # push previous tweetid
-                heapq.heappush(minheap, (-time, tweetId, followee, idx - 1))
+                tw_time = self.twitte_dic[followeeId][idx][0]
+                twitterid = self.twitte_dic[followeeId][idx][1]
+                heapq.heappush(heap, (-tw_time, followeeId, twitterid, idx - 1))
 
         return res
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        self.followMap[followerId].add(followeeId)
+        self.follow_dic[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followeeId in self.followMap[followerId]:
-            self.followMap[followerId].remove(followeeId)
+        if followeeId in self.follow_dic[followerId]:
+            self.follow_dic[followerId].remove(followeeId)
