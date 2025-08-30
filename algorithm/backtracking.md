@@ -9,8 +9,8 @@ Backtracking
 │   Skill: decide “take or not take”, handle duplicates
 │
 ├── 2. Permutations
-│   ├── LC 46  Permutations
-│   ├── LC 47  Permutations II (with duplicates)
+│   ├── *LC 46  Permutations
+│   ├── *LC 47  Permutations II (with duplicates)
 │   └── LC 784 Letter Case Permutation (string version)
 │   Skill: use `visited` to avoid reusing elements
 │

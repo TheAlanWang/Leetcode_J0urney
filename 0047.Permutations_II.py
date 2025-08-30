@@ -1,5 +1,12 @@
 # 0047.Permutations_II
 
+'''
+Approach: Backtracking
+* Skip:
+    At the same recursion depth, allow only the first occurrence of a repeated value to be chosen; 
+    skip later duplicates to avoid generating duplicate permutations.
+'''
+
 from typing import List
 
 class Solution:

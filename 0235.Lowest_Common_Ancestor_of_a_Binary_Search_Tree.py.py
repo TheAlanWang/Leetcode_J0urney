@@ -1,10 +1,8 @@
 # 0235.Lowest_Common_Ancestor_of_a_Binary_Search_Tree.py
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+
+'''
+Top-down DFS
+'''
 
 from typing import Optional
 
@@ -25,3 +23,10 @@ class Solution:
                 return dfs(node.right)
 
         return dfs(root)
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
