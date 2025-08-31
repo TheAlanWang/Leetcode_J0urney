@@ -3,8 +3,10 @@
 '''
 Approach: Backtracking
 * Skip:
-    At the same recursion depth, allow only the first occurrence of a repeated value to be chosen; 
-    skip later duplicates to avoid generating duplicate permutations.
+    At the same depth, you must use the earlier one first before you can use the later one.
+    `(i-1) not in used`: the earlier one is not used in this path, so skip the later one.
+
+Time: O(N * N!) Space: O(N)
 '''
 
 from typing import List

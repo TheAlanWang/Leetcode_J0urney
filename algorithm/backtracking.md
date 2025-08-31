@@ -15,7 +15,7 @@ Backtracking
 │   Skill: use `visited` to avoid reusing elements
 │
 ├── 3. Partitioning / Splitting
-│   ├── LC 131 Palindrome Partitioning
+│   ├── *LC 131 Palindrome Partitioning
 │   ├── LC 93  Restore IP Addresses
 │   └── LC 282 Expression Add Operators (harder)
 │   Skill: cut input into segments, check validity

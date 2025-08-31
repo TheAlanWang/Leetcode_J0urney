@@ -1,6 +1,7 @@
 # 0102.Binary_Tree_Level_Order_Traversal
 '''
-lever order traversal
+Approach: Lever order traversal
+* deque([None]) has value, deque([]) does not have value
 '''
 
 from collections import deque
