@@ -2,8 +2,8 @@
 ```
 Backtracking
 ├── 1. Subsets / Combinations
-│   ├── LC 78  Subsets
-│   ├── LC 90  Subsets II (with duplicates)
+│   ├── *LC 78  Subsets
+│   ├── *LC 90  Subsets II (with duplicates)
 │   ├── LC 39  Combination Sum
 │   └── LC 40  Combination Sum II
 │   Skill: decide “take or not take”, handle duplicates
@@ -26,6 +26,18 @@ Backtracking
 │   ├── LC 37  Sudoku Solver
 │   Skill: prune invalid branches early (constraints!)
 ```
+
+## Framework:
+1. Understand the problem
+2. State
+    - What information do I need to track at each step?
+3. Choices (letters for current digit)
+    - What options do I have at the current step?
+4. Base case (when index == len(digits))
+    - When should recursion stop?
+5. Transition (append, recurse, pop)
+    - How do I move to the next state?
+
 ## Permutation
 ### Leetcode:
 - 0784.Letter_Case_Permutation

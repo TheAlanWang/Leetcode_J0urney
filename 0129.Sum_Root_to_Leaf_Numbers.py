@@ -1,7 +1,15 @@
 # 0129.Sum_Root_to_Leaf_Numbers
 
 '''
-Approach: DFS Top-Down
+Approach: DFS Top-Down Preroder
+State: dfs(node, total)
+Base Case: 
+    - If none, return 0
+    - If leaf, return total
+Choice: 
+    - Update total: total * 10 + node.val
+    - Recurse left and right
+    - Return right_total + left_total
 
 Time Complexity: O(N) | Space Complexity: O(H)
 '''

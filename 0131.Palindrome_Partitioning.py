@@ -2,10 +2,15 @@
 '''
 Approach: Backtracking
 
-'for' loop: branching over every *possible substring* starting at start.
-'dfs(i+1, path)': recursing on the remaining suffix.
+State: start, path
+Base Case: start == len(s)
+Transition:
+    - For each 'end' in (start, len(s)):
+        - Check if s[start:end+1] is a palindrome
+            - If yes: append substring to path and recurse with dfs(end+1, path)
+            - If not: skip
 
-Time Complexity: O(N * 2^N) | Space Complexity: O(N)
+*Time Complexity: O(N * 2^N) | Space Complexity: O(N)
 '''
 
 from typing import List

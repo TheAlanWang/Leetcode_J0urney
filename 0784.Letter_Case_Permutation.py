@@ -1,11 +1,15 @@
 # 0784.Letter_Case_Permutation
-# time complexity: O(2^k*n) | space complexity: O(2^k*n)
+
 '''
-Approach: DFS + Backtracking
-1. Use DFS to explore all possible letter case permutations of the input string.
-2. At each character, if it's a digit, we can only add it as is. If it's a letter, we have two choices: add the uppercase version or the lowercase version.
-3. Use backtracking to explore both choices for letters.
-4. When we reach the end of the string, we add the current permutation to the result list. 
+Approach: Backtracking
+State: (idx, path)
+Base Case: len(path) == len(s)
+Transition:
+    Branching factor is determined by the character type
+        if s[i] isdigit -> only one branch
+        if s[i] letter  -> two branches: upper and lower
+        [No loop → when the next choice is already fixed by idx.]
+* Time complexity: O(2^k*n) | Space complexity: O(2^k*n)
 '''
 from typing import List
 

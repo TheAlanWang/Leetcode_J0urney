@@ -1,10 +1,13 @@
 # 0090.Subsets_II
 '''
 Approach: Backtracking
-        
-i: the index you are trying at this level
-start: control where the loop begin
-len(path): the current recursion depth
+
+State: (start, path)
+    start - control where the loop begin
+    path - the current recursion depth
+Base Case: start == len(nums)
+Choice:  for i in [start, end], skip duplicate
+
 Time: O(N * 2^N) | Space: O(N)
 '''
 from typing import List
@@ -27,3 +30,26 @@ class Solution:
             path.append(nums[i])
             self.backtrack(i + 1, path, nums, res) 
             path.pop()
+
+
+'''
+dry run [1,2,2]
+                            []
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+      pick 1              pick 2            skip (dup 2)     start = 0
+        │                   │
+       [1]                 [2]
+        │                   │
+   ┌────┴────┐              │
+   │         │              │
+pick 2   skip (dup 2)     pick 2                             start = 1
+   │                        │
+ [1,2]                    [2,2]
+   │
+   │
+ pick 2                                                      start = 2
+   │
+ [1,2,2]
+
+'''

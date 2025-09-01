@@ -30,7 +30,7 @@ Binary Search
 │   Idea: find boundary or local peak by checking mid and neighbors.
 │
 ├── 5. Matrix/Grid search
-│   ├── LC 74   Search a 2D Matrix
+│   ├── *LC 74   Search a 2D Matrix
 │   ├── LC 240  Search a 2D Matrix II
 │   Idea: treat as sorted 1D array or eliminate rows/cols.
 │

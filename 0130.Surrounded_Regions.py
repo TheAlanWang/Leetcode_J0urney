@@ -1,7 +1,13 @@
 # 130. Surrounded Regions
 # https://leetcode.com/problems/surrounded-regions/description/
-# time complexity: O(m * n) | space complexity: O(m * n)
-
+'''
+Approach: BFS
+State: visited, regions, enclosed(surrounded flag, flip_flag)
+Transition: 
+    BFS: if counter "O", add into 'regions' and mark as 'visited'
+    After BFS: if 'enclosed' is True, change to "X"
+* Time complexity: O(m * n) | Space complexity: O(m * n)
+'''
 
 from typing import List
 from collections import deque
