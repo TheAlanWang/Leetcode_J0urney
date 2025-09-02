@@ -1,0 +1,39 @@
+# 0101.Symmetric_Tree
+'''
+Approach: dfs top-down
+State:
+    helper(tree1, tree2)
+Base Case:
+    Both None: return True
+    One None: return False
+Transitions:
+    if val euqal, helper(tree1.left, tree2.right) and helper(tree1.right, tree2.left)
+
+* TC: O(n) | SC: O(h)
+'''
+
+from typing import Optional
+
+class Solution:
+    def isSymmetric(self, root: Optional['TreeNode']) -> bool:
+        def helper(tree1, tree2):
+            if not tree1 and not tree2:
+                return True
+            
+            if not tree1 or not tree2:
+                return False
+            
+            if tree1.val != tree2.val:
+                return False
+            
+            return helper(tree1.left, tree2.right) and helper(tree1.right, tree2.left)
+        
+        return helper(root.left, root.right) if root else True
+    
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
