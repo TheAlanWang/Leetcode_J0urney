@@ -1,8 +1,9 @@
 # 0355.Design_Twitter.py
 # https://leetcode.com/problems/design-twitter/description/
 
-# getNewsFeed: O(N log k) k is the number of followees, N is the number of tweets
-
+'''
+getNewsFeed: O(N log k) k is the number of followees, N is the number of tweets
+'''
 
 from typing import List
 from collections import defaultdict

@@ -8,7 +8,6 @@
 
 
 # Method 1
-from typing import List
 '''
 Approach: Dynamic Programming
 State: 
@@ -19,7 +18,7 @@ Transitions:
 
 * TC: O(n^2) | SC: O(n)
 '''
-        
+from typing import List  
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
 

@@ -1,8 +1,13 @@
 # 0040.Combination_Sum_II
 
 '''
-time complexity: O(2^n) | space complexity: O(n)
-* Use the first occurrence at a level; skip later equals at the same level.
+Approach: Backtracking
+States: (idx, path, total)
+Transitions:
+    Use the first occurrence at a level(because it represents a new branch); 
+    skip later equals at the same level.
+
+* TC: O(2^n) | SC: O(n)
 '''
 from typing import List
 

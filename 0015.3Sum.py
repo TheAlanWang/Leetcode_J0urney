@@ -34,3 +34,10 @@ class Solution:
 
             
         return res
+    
+'''
+Mistake:
+1. index: 
+    i in range(len(nums)-2)
+    left from i + 1
+'''
