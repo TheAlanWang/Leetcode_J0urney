@@ -25,9 +25,10 @@ class Solution:
             val = l1_val + l2_val + carry
             carry = val // 10
             val = val % 10
+            
             tail.next = ListNode(val)
-
             tail = tail.next
+            
             l1 = l1.next if l1 else None  # move to next node or None if already None
             l2 = l2.next if l2 else None
         
