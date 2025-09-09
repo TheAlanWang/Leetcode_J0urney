@@ -1,7 +1,10 @@
-# 210.CourseSchedule_II
+# 0210.CourseSchedule_II
 # https://leetcode.com/problems/course-schedule-ii/description/
-# time complexity: O(V + E) | space complexity: O(V + E)
-# topological sort
+
+'''
+Approach: Topological sort
+* TC: O(V + E) | SC: O(V + E)
+'''
 from typing import List
 from collections import defaultdict, deque
 

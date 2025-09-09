@@ -1,0 +1,45 @@
+# 0079.Word_Search.py
+
+'''
+Approach: Backtracking + dfs
+State: r, c, index, visited
+Transitions:
+    if board[r][c] == word[i], explore neighbors
+    backtrack after exploring: unmarked visited
+
+* TC: O(mn4^L) | SC: O(L)
+'''
+
+from typing import List
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+
+        rows, cols = len(board), len(board[0])
+        dirs = ((1, 0), (-1, 0), (0, 1), (0, -1))
+        def dfs(r, c, idx, visited):
+            if idx == len(word):
+                return True
+            
+            if (
+                not (0 <= r < rows and 0 <= c < cols) or
+                (r, c) in visited or
+                board[r][c] != word[idx]
+            ):
+                return False
+            
+            visited.add((r, c))
+            for dr, dc in dirs:
+                nr, nc = r + dr, c + dc
+                if dfs(nr, nc, idx + 1, visited):
+                    return True
+            visited.remove((r, c))
+            return False
+        
+        for r in range(rows):
+            for c in range(cols):
+                if dfs(r, c, 0, set()):
+                    return True
+        return False
+        
+            
