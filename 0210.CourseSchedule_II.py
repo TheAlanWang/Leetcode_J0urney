@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/course-schedule-ii/description/
 
 '''
-Approach: Topological sort
+Approach: Topological sort Directed Acyclic Graph (DAG)
 * TC: O(V + E) | SC: O(V + E)
 '''
 from typing import List
