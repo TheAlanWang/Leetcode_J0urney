@@ -3,7 +3,10 @@
 '''
 Approach: Linked list
 Transitions:
-    only need to move (length – n) steps from the dummy node to land at the node right before the target.
+    1. Compute length
+    2. Removing the n-th node (length-n+1)
+    3. Only need to move (length-n) steps from the dummy node to land at the node right before the target.
+    4. Use tail.next = tail.next.next to remive
 '''
 from typing import Optional
 
