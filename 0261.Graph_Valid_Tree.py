@@ -2,7 +2,8 @@
 # https://leetcode.com/problems/graph-valid-tree/
 
 '''
-Method1: BFS            | TC: O(n+e) | SC: O(n+e)
+Method1: BFS
+* TC: O(n+e) | SC: O(n+e)
 Method2: Union-Find
 '''
 
