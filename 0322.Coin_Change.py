@@ -21,3 +21,8 @@ class Solution:
                     dp[i] = min(dp[i - coin] + 1, dp[i])
         
         return dp[-1] if dp[-1] != float('inf') else -1
+
+'''
+Mistake:
+    - inner loop mistake
+'''
