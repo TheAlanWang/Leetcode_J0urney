@@ -1,4 +1,4 @@
-# 0001.Two_Sum
+# 0001.Two_Sum.md
 
 '''
 Approach: Hash Map

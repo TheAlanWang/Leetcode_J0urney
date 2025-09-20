@@ -86,3 +86,22 @@ merge branch to main
 git checkout main
 git merge branch1
 ```
+
+in branch1 push to branch1
+```zsh
+git checkout branch1
+git add .
+git commit -m "Finish feature X"
+git push -u origin branch1
+```
+
+### Merge
+Method1: 
+	switch to github, apply PR
+Method2:
+```zsh
+git checkout main
+git pull origin main
+git merge b 
+```
+
