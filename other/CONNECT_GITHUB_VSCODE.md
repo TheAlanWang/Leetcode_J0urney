@@ -100,6 +100,8 @@ Method1:
 	switch to github, apply PR
 Method2:
 ```zsh
-
+git checkout main
+git pull origin main
+git merge b
 ```
 
