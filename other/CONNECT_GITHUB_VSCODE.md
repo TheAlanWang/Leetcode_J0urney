@@ -62,32 +62,23 @@ You should see your GitHub repository URL.
 Go to GitHub webpage to confirm your code is uploaded.
 
 ---
-
-✅ Now your VS Code is connected with GitHub!
-
 ## Branch
-### create new branch and switch
-1. create new branch
+### Create new branch and switch
+1. Create a branch (does not switch)
 ```zsh
 git branch new-branch-name
 ```
-2. change to new branch
+2. Switch to the branch
 ```zsh
 git checkout new-branch-name
 ```
 
-create change to new branch
+Short cut: create and switch
 ```zsh
 git checkout -b new-branch-name
 ```
 
-merge branch to main
-```zsh
-git checkout main
-git merge branch1
-```
-
-in branch1 push to branch1
+3. make changes, then commit
 ```zsh
 git checkout branch1
 git add .
@@ -96,12 +87,54 @@ git push -u origin branch1
 ```
 
 ### Merge
-Method1: 
-	switch to github, apply PR
-Method2:
+#### Method 1: Submit a Pull Request (Recommended for teamwork)
+1. After push feature branch to remote
+`git push -u origin branch-name`
+
+2. Open a Pull Request on GitHub/GitLab
+- base: `main`
+- compare: `branch-name`
+- Fill in title and description (what feature/fix this branch adds).
+
+3. **Get the PR reviewed and tested** → Click **Merge** button.
+
+4. Update your local main branch
 ```zsh
 git checkout main
 git pull origin main
-git merge b 
 ```
 
+#### Method2: local merge
+1. Make sure you’re on `main` and up to date
+    `git checkout main git pull origin main`
+2. Merge your feature branch locally
+```zsh
+git merge branch-name
+```
+    - If no conflicts → Git creates a merge commit automatically.   
+    - If conflicts → resolve them manually, then `git add . && git commit`.
+        
+3. Push the updated `main` branch to remote
+```zsh
+git push origin main
+```
+
+### Remove file already in github
+#### 1. add file in `.gitignore`
+`.DS_Store`
+
+#### 2.Remove `.DS_Store` from Git tracking
+```zsh
+git rm --cached .DS_Store 
+git commit -m "Remove .DS_Store" 
+git push
+```
+
+### Delete branch
+```zsh
+# Safe delete (only if branch is fully merged)
+git branch -d branch-name
+
+# Force delete (even if not merged)
+git branch -D branch-name
+```
