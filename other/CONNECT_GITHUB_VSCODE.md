@@ -64,3 +64,25 @@ Go to GitHub webpage to confirm your code is uploaded.
 ---
 
 ✅ Now your VS Code is connected with GitHub!
+
+## Branch
+### create new branch and switch
+1. create new branch
+```zsh
+git branch new-branch-name
+```
+2. change to new branch
+```zsh
+git checkout new-branch-name
+```
+
+create change to new branch
+```zsh
+git checkout -b new-branch-name
+```
+
+merge branch to main
+```zsh
+git checkout main
+git merge branch1
+```
