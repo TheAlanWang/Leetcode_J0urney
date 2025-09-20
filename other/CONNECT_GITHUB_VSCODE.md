@@ -102,6 +102,6 @@ Method2:
 ```zsh
 git checkout main
 git pull origin main
-git merge b
+git merge b 
 ```
 
