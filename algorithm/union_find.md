@@ -1,3 +1,8 @@
+Two different `union` way:
+1. by size
+2. by rank
+
+## DSU: Disjoint Set Union
 ```python
 class DSU:
     def __init__(self, n: int):
