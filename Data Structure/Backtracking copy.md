@@ -1,3 +1,21 @@
+### Q: When to use a `for` loop in backtracking, and when not?
+1. Does the result require considering **every element** in order?
+	- Yes → Each element must make a decision
+	    - ✅ Use **recursion branching** (no `for`).
+	    - Every element must make a *fixed decision* (usually two choices: yes/no, +/−, take/skip).
+	    - Since every element must be considered, recursion simply branches on those fixed choices.
+	    - Example: Target Sum (494), 0/1 Knapsack.
+	- No → You can freely choose some elements, skip others.
+	    - ✅ Use a **`for` loop** to iterate through candidates.
+	    - At each recursion level, you freely choose from *multiple candidates* in the remaining elements.
+	    - A `for` loop is used to iterate through these possible candidates.
+	    - Example: Subsets (78), Permutations (46), Combination Sum (39), N-Queens.
+2. At this recursion step, do I have a fixed set of choices, or do I need to explore many candidates?
+	- Fixed small choices → **branch**.
+	- Variable candidates → **loop**.
+
+Whether you need a `for` loop in backtracking depends on **how many choices exist at each recursion step**.
+if use `for`, means that result can start from the element, like subset.
 # Backtracking
 ```
 Backtracking
