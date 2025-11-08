@@ -1,94 +1,68 @@
----
-tags:
-  - ds/heap
-pageorder: 8
-mainpage: "[[DV_DataStructure]]"
----
-## Heap/Priority Queue
-> [!note] A Heap is a  [[Tree_Binary Tree#Complete Binary Tree|Complete Binary Tree structure]].
-> 1. All levels except the last level are completely filled.
-> 2. The last level is filled from left to right, with no gaps.
-
-**Heap Structure property:**
-- In a Min Heap, the parent node is always smaller than or equal to its child nodes.
-- In a Max Heap, the parent node is always greater than or equal to its child nodes.
-This structure allows for efficient retrieval of the smallest (Min Heap) or largest (Max Heap) element.
-
+| Operation                 |                Time Complexity                | Notes                                         |
+| ------------------------- | :-------------------------------------------: | --------------------------------------------- |
+| `heapq.heappush(h, x)`.   |                 **O(log n)**                  | Insert and bubble up (`n` = heap size).       |
+| `heapq.heappop(h)`        |                 **O(log n)**                  | Pop smallest and sift down.                   |
+| `h[0]` (peek)             |                   **O(1)**                    | Read smallest without removing.               |
+| `heapq.heapify(a)`        |                   **O(n)**                    | In-place build from a list.                   |
+| `heapq.heapreplace(h, x)` |                 **O(log n)**                  | Pop smallest, then push `x` (size unchanged). |
+| `heapq.heappushpop(h, x)` | **O(log n)** *(best **O(1)** if `x <= h[0]`)* | Push `x`, then pop and return the smallest.   |
 > [!note] A **Priority Queue** is an **abstract data structure** similar to a regular queue but with prioritized elements. Instead of following the First-In-First-Out (FIFO) rule like a normal queue, elements are dequeued based on their priority (e.g., highest priority first).
+## Heap
+```
+Heap
+├── 1. Core Top-K / Order Statistics
+│   ├── LC 215  Kth Largest Element in an Array
+│   ├── LC 703  Kth Largest in a Stream
+│   ├── LC 347  Top K Frequent Elements
+│   └── LC 692  Top K Frequent Words
+│   Idea: min-heap of size K for “largest”; freq map + (count, key) heap; custom tie-breakers.
+│
+├── 2. K-way Merge & Pairwise Sums
+│   ├── LC 23   Merge k Sorted Lists
+│   ├── LC 373  Find K Pairs with Smallest Sums
+│   ├── LC 378  Kth Smallest in a Sorted Matrix
+│   └── LC 632  Smallest Range Covering Elements from K Lists
+│   Idea: push the “head” from each list/row; pop min, then push its neighbor.
+│
+├── 3. Nearest / Closest Points
+│   ├── LC 973  K Closest Points to Origin
+│   └── LC 658  Find K Closest Elements
+│   Idea: max-heap of size K (keep best K); or two-pointer alternative for LC 658.
+│
+├── 4. Two-Heaps (Median / Quantiles)
+│   ├── LC 295  Find Median from Data Stream ⭐
+│   └── LC 480  Sliding Window Median
+│   Idea: max-heap for lower half, min-heap for upper; rebalance; lazy deletion for windows.
+│
+├── 5. Greedy + Heap (Scheduling / Resources)
+│   ├── LC 253  Meeting Rooms II (min-heap of end times)
+│   ├── LC 630  Course Schedule III (max-heap of durations)
+│   ├── LC 502  IPO (capital min-heap + profit max-heap)
+│   ├── LC 621  Task Scheduler (max-heap counts + cooldown)
+│   ├── LC 767  Reorganize String (max-heap counts)
+│   ├── LC 1642 Furthest Building You Can Reach (min-heap climbs)
+│   ├── LC 1705 Maximum Number of Eaten Apples (min-heap by expiry)
+│   └── LC 1167 Minimum Cost to Connect Sticks (min-heap combine)
+│   Idea: pick best available by a criterion; heap maintains current frontier/stock.
+│
+├── 6. Graph + Priority Queue
+│   ├── LC 743  Network Delay Time (Dijkstra)
+│   ├── LC 1631 Path With Minimum Effort (Dijkstra)
+│   ├── LC 1514 Path with Maximum Probability (max-heap Dijkstra)
+│   └── LC 1584 Min Cost to Connect Points (Prim’s MST)
+│   Idea: PQ of (dist, node) or (weight, edge); relax edges / grow MST.
+│
+├── 7. Sweep Line / Heap with Lazy Deletion
+│   ├── LC 218  The Skyline Problem
+│   └── LC 2402 Meeting Rooms III / variants
+│   Idea: process events in order; heap tracks active items; remove expired lazily.
+│
+└── 8. Design / Simulation with Heaps
+    ├── *LC 355  Design Twitter (k-way merge via heap)
+    └── LC 1845 Seat Reservation Manager (min-heap of free seats)
+    Idea: heap maintains the “next” element to return (smallest ID / latest tweet, etc.).
 
-A Heap is a common way to implement a Priority Queue because:
-### Heap Operations
-- Push: Insertion: $O(log n)$
-- Pop: Removal of the highest/lowest priority element: $O(logn)$
-- Getting the highest/lowest priority element: $O(1)$
-- Heapify: $O(n)$
-
-```python
-import heapq
-
-# Min heap operations
-heap = []
-heapq.heappush(heap, item)    # Push
-smallest = heapq.heappop(heap) # Pop
-smallest = heap[0]            # Peek
-
-# Convert list to heap
-heapq.heapify(list)          # O(n)
 ```
 
-### Push & Pop
-Push
-- **Add the element** at the next available position in the heap (usually the last position, i.e., the next open spot in the tree structure).
-- **Perform a "heapify-up" operation** to maintain the heap property. This means comparing the inserted element with its parent and swapping them if the heap property is violated (i.e., if a min-heap property is violated for a smaller value or a max-heap property is violated for a larger value).
-- **Repeat the heapify-up process** until the heap property is restored or the element reaches the root.
-
-Pop
-1. Swap Root with Last Element:
-- The root (self.heap[1]) is swapped with the last element in the heap (self.heap.pop()).
-- After the swap, the last element is now at the root, which might violate the heap property (in this case, the min-heap property).
-
-1. Percolate Down:
-- The process begins at the new root (i = 1).
-- The code checks if the current element (self.heap[i]) is greater than its left child (self.heap[2 * i]) or right child (self.heap[2 * i + 1]).
-    - If the right child exists and is smaller than the left child, it checks if the current element is greater than the right child and swaps them.
-    - Otherwise, if the left child is smaller, it swaps the current element with the left child.
-- After each swap, the index (i) is updated to the index of the child that was swapped with, and the loop continues to percolate down the tree.
-- If no swap is needed (meaning the heap property is satisfied), the loop breaks.
-
-Purpose of Percolate Down:
-
-- The goal of percolate down is to **restore the heap property** after the root element is removed. This ensures that the heap remains a valid min-heap.
-- Percolate down works by comparing the current element with its children and moving it down the tree to its correct position.
-
-### Complete Binary Tree (CBT)
-- Every level is completely filled, except possibly the last one.
-- If the last level is not full, nodes are added from left to right.
-- It can be perfectly balanced or nearly balanced.
-- A complete binary tree ensures efficient use of space.
-
-Order Property:
-> left child = 2 * index
-> _right_ _child_ = 2 * _index_ + 1
-> _parent_ = _index_
 
 
-```python
-def heapify(arr, i, n):
-    smallest = i
-    left = 2 * i + 1
-    right = 2 * i + 2
-
-    # Check if left child is smaller
-    if left < n and arr[left] < arr[smallest]:
-        smallest = left
-
-    # Check if right child is smaller
-    if right < n and arr[right] < arr[smallest]:
-        smallest = right
-
-    # If smallest is not the current index
-    if smallest != i:
-        arr[i], arr[smallest] = arr[smallest], arr[i]  # swap
-        heapify(arr, smallest, n)  # recursively heapify the affected subtree
-
-```

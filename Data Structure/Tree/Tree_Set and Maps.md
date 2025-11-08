@@ -23,7 +23,7 @@ are often implemented using **Binary Search Trees** because they allow for effic
     - Searching for a key, inserting a key-value pair, and removing a key-value pair in a BST are all operations that take O(log n) time in a balanced tree.
     - The keys in a BST-based Map are stored in a sorted order, and you can efficiently search for values by looking up the keys.
 
-||Package|
+|x|Package|
 |---|---|
 |python:|SortedDict|
 |JavaScript:|Treemap-js|
